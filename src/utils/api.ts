@@ -42,7 +42,7 @@ export const deleteToDoList = async (date: string) => {
   if (!response.ok) throw new Error('Failed to delete to-do list');
 };
 
-export const fetchCompletedRoutines = async () => {
+export const fetchcompletedRoutines = async () => {
   const response = await fetch('/api/morning/completed');
   if (!response.ok) {
     throw new Error('Failed to fetch completed routines');
@@ -59,8 +59,8 @@ export const saveCompletedRoutine = async (routine: { date: string; title: strin
   if (!response.ok) throw new Error('Failed to save completed routine');
 };
 
-export const deleteCompletedRoutine = async (date: string) => {
-  const response = await fetch(`/api/morning/completed/${date}`, {
+export const deleteCompletedRoutine = async (id: string) => {
+  const response = await fetch(`/api/morning/completed/${id}`, {
     method: 'DELETE',
   });
   if (!response.ok) {

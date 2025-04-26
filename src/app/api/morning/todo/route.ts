@@ -26,14 +26,15 @@ export async function POST(request: Request) {
     const toDoData = await request.json();
 
     if (!toDoData.date || !toDoData.tasks || !Array.isArray(toDoData.tasks)) {
-      return NextResponse.json({ message: 'Invalid to-do data.' }, { status: 400 });
+      return NextResponse.json({ message: "Invalid to-do data." }, { status: 400 });
     }
 
     await client.connect();
-    const database = client.db('progressTracker');
-    const collection = database.collection('morningToDo');
+    const database = client.db("progressTracker");
+    const collection = database.collection("morningToDo");
 
     const result = await collection.insertOne({
+      id: toDoData.id, // Save the unique ID
       date: toDoData.date,
       tasks: toDoData.tasks,
       createdAt: new Date(),
@@ -41,8 +42,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ id: result.insertedId, ...toDoData }, { status: 201 });
   } catch (error) {
-    console.error('Error saving to-do list:', error);
-    return NextResponse.json({ message: 'Failed to save to-do list.' }, { status: 500 });
+    console.error("Error saving to-do list:", error);
+    return NextResponse.json({ message: "Failed to save to-do list." }, { status: 500 });
   } finally {
     await client.close();
   }

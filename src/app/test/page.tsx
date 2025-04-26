@@ -1,51 +1,60 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { MagicCard } from "@/components/magicui/magic-card";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { MagicCard } from "@/components/magicui/magic-card";
 import { useTheme } from "next-themes";
 
-export default function MagicCardDemo() {
+export default function About() {
   const { theme } = useTheme();
+
   return (
-    <Card className="p-0 max-w-sm w-full shadow-none border-none">
-      <MagicCard
-        gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-        className="p-0"
-      >
-        <CardHeader className="border-b border-border p-4 [.border-b]:pb-4">
-          <CardTitle>Login</CardTitle>
-          <CardDescription>
-            Enter your credentials to access your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="p-4">
-          <form>
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="name@example.com" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" />
-              </div>
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="p-4 border-t border-border [.border-t]:pt-4">
-          <Button className="w-full">Sign In</Button>
-        </CardFooter>
-      </MagicCard>
-    </Card>
+    <div
+      className="flex flex-col md:flex-row items-center justify-between gap-4"
+    >
+      {/* About Section */}
+      <div className="flex-1 pr-72 flex items-center justify-center">
+        <Card className="p-0 max-w-full">
+          <MagicCard
+            gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+            className="p-0"
+          >
+            <CardHeader className="border-b border-border p-4 [.border-b]:pb-4">
+              <CardTitle>About</CardTitle>
+              <CardDescription>
+                Learn more about this app and its features.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-4">
+              <p className="text-lg">
+                This is a simple morning routine app that helps you plan your
+                day. You can create a to-do list, save templates, and track your
+                completed routines. The app is built with Next.js and uses the
+                latest features of React and TypeScript. Feel free to explore
+                the code and contribute to the project! This app is a work in
+                progress, and I plan to add more features in the future.
+              </p>
+            </CardContent>
+          </MagicCard>
+        </Card>
+      </div>
+
+      {/* Image Section */}
+      <div className="flex-1 flex items-center justify-center">
+        <Image
+          src="/images/animeGirl.png"
+          alt="Anime Girl"
+          width={500}
+          height={500}
+          className=""
+        />
+      </div>
+    </div>
   );
 }
